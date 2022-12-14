@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Library</title>
+</head>
+<body>
+    <div class="top-bar">
+        <h1>My Library</h1>
+        <button id="show-form">
+            <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M17,13H13V17H11V13H7V11H11V7H13V11H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z" />
+            </svg>
+            Add a book
+        </button>
+    </div>
+
+    <div class="library-display"></div>
+
+    <div class="form-container hidden">
+        <div class="form-inner">
+            <div class="form-top">
+                <h2 class="form-title">Add a new book</h2>
+                <div class="form-close">
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M19,3H16.3H7.7H5A2,2 0 0,0 3,5V7.7V16.4V19A2,2 0 0,0 5,21H7.7H16.4H19A2,2 0 0,0 21,19V16.3V7.7V5A2,2 0 0,0 19,3M15.6,17L12,13.4L8.4,17L7,15.6L10.6,12L7,8.4L8.4,7L12,10.6L15.6,7L17,8.4L13.4,12L17,15.6L15.6,17Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="form-content">
+                <form id="add-form" class="add-book" action="">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" id="title" required>
+                    <label for="author">Author:</label>
+                    <input type="text" name="author" id="author" required>
+                    <label for="pages">Pages:</label>
+                    <input type="number" name="pages" id="pages" required>
+                    <label for="year">Year:</label>
+                    <input type="number" name="year" id="year" required>
+                    <label for="read">Read?</label>
+                    <input id="read" type="checkbox">
+                    <button type="button" id="add">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="./library.js"></script>
+</body>
+</html>
