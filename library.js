@@ -48,17 +48,25 @@ addBookToLibrary('Stig of the Dump', 'Clive King', 157, 1963, false);
 function createElements(book) {
     // makeElement is a custom function defined above
     const bookCard = makeElement('div', '', 'book-card');
-    const title = makeElement('h2', `${book.title}`);
-    const author = makeElement('p', `Author: ${book.author}`);
-    const pages = makeElement('p', `Pages: ${book.pages}`);
-    const yearPublished = makeElement('p', `Year: ${book.yearPublished}`);
+    const title = makeElement('h2', `${book.title}`);  
+
+    const bookContent = makeElement('div', '', 'book-content');
+    bookContent.innerHTML = `
+        <div class="content-title">Author:</div><div>${book.author}</div>
+        <div class="content-title">Pages:</div><div>${book.pages}</div>
+        <div class="content-title">Published:</div><div>${book.yearPublished}</div>
+        <div class="content-title">Read?</div>
+    `;
+
+    // read toggle needs to be created separately in order to be able to interact with it
+    const readContainer = makeElement('div');
     const read = makeElement('input', '', 'read-checkbox');
     read.setAttribute('type', 'checkbox');
-    const readLabel = makeElement('label', 'Read? ', 'read-label');
-    readLabel.appendChild(read);
+    // check array and set checked status
     if (book.read === true) {
         read.setAttribute('checked', '');
     }
+    // set read status in array
     read.addEventListener('input', () => {
         if (book.read === true) {
             book.read = false;
@@ -67,20 +75,15 @@ function createElements(book) {
         }
     });
 
+    readContainer.appendChild(read);
+    bookContent.appendChild(readContainer);
+
+    // button section
     const removeButton = makeElement('button', 'Remove');
     const editButton = makeElement('button', 'Edit');
-
     const buttonBlock = makeElement('div', '', 'button-block');
     buttonBlock.appendChild(removeButton);
     buttonBlock.appendChild(editButton);
-
-    bookCard.appendChild(title);
-    bookCard.appendChild(author);
-    bookCard.appendChild(pages);
-    bookCard.appendChild(yearPublished);
-    bookCard.appendChild(readLabel);
-    bookCard.appendChild(buttonBlock);
-    libraryDisplay.appendChild(bookCard);
 
     removeButton.addEventListener('click', () => {
         // remove from array
@@ -103,6 +106,12 @@ function createElements(book) {
         formTitle.textContent = 'Edit this book'
         formContainer.classList.remove('hidden');
     });
+
+    // construct card
+    bookCard.appendChild(title);
+    bookCard.appendChild(bookContent);
+    bookCard.appendChild(buttonBlock);
+    libraryDisplay.appendChild(bookCard);
 }
 
 // resets form inputs
