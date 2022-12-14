@@ -118,10 +118,23 @@ function clearForm() {
 
 // create html elements  on page for each book
 function displayBooks() {
+    // clear current cards
+    libraryDisplay.innerHTML = '';
+
     // eslint-disable-next-line no-restricted-syntax
     for (const book of myLibrary) {
         createElements(book);
     }
+
+    // create a plus button card
+    const plusCard = makeElement('div', '+', 'plus-card');
+    plusCard.innerHTML = '<svg style="width:50px;height:50px" viewBox="0 0 24 24"><path fill="currentColor" d="M17,13H13V17H11V13H7V11H11V7H13V11H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z" /></svg>';
+    plusCard.addEventListener('click', () => {
+        form[5].textContent = 'Add'
+        formTitle.textContent = 'Add a new book'
+        formContainer.classList.remove('hidden');
+    });
+    libraryDisplay.appendChild(plusCard);
 }
 
 displayBooks();
@@ -137,17 +150,17 @@ formBtn.addEventListener('click', (e) => {
             form[3].value,
             form[4].checked,
         );
-        createElements(myLibrary[myLibrary.length - 1]);
+        // re-build page
+        displayBooks();
     } else if (e.target.innerText === 'Save') {
         // find index of the book currently being edited
-        index = myLibrary.indexOf(currentBook);
+        const index = myLibrary.indexOf(currentBook);
         myLibrary[index].title = form[0].value;
         myLibrary[index].author = form[1].value;
         myLibrary[index].pages = form[2].value;
         myLibrary[index].yearPublished = form[3].value;
         myLibrary[index].read = form[4].checked;
-        // remove items and re-build page
-        libraryDisplay.innerHTML = '';
+        // re-build page
         displayBooks();
         
     }

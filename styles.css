@@ -17,7 +17,7 @@ img, picture, svg, video {
 body {
     height: 100vh;
     /* padding */
-    padding: 20px max(calc(50vw - 500px), 20px);
+    padding: 40px max(calc(50vw - 500px), 20px);
     background-color: #bdd5d5;
 }
 
@@ -91,6 +91,31 @@ input {
     width: 100%;
     box-shadow: 0 0 5px 5px #00656511;
 }
+
+.plus-card {
+    background-color: #fff4;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#00656555;
+    cursor: pointer;
+}
+
+.plus-card:hover {
+    background-color: #fff6;
+    color:#00656577;
+
+}
+
+.plus-card path, .plus-card svg {
+    pointer-events: none;
+}
+
+
 
 .button-block {
     display: flex;
