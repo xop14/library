@@ -2,7 +2,7 @@
 
 URL: https://xop14.github.io/library/
 
-Simple book library mad with Javascript, CSS and HTML.
+Simple book library made with Javascript, CSS and HTML.
 
 ## Features
 
