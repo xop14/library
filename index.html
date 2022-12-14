@@ -31,18 +31,18 @@
                 </div>
             </div>
             <div class="form-content">
-                <form id="add-form" class="add-book" action="">
+                <form id="add-form" class="add-book">
                     <label for="title">Title:</label>
                     <input type="text" name="title" id="title" required>
                     <label for="author">Author:</label>
                     <input type="text" name="author" id="author" required>
                     <label for="pages">Pages:</label>
-                    <input type="number" name="pages" id="pages" required>
-                    <label for="year">Year:</label>
-                    <input type="number" name="year" id="year" required>
+                    <input type="number" name="pages" id="pages" max="9999" required>
+                    <label for="year">Published:</label>
+                    <input type="number" name="year" id="year" max="2100" required>
                     <label for="read">Read?</label>
                     <input id="read" type="checkbox">
-                    <button type="button" id="add">Add</button>
+                    <button id="add">Add</button>
                 </form>
             </div>
         </div>

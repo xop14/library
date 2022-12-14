@@ -46,16 +46,16 @@ addBookToLibrary('Stig of the Dump', 'Clive King', 157, 1963, false);
 
 // create html elements for a book card
 function createElements(book) {
+    // makeElement is a custom function defined above
     const bookCard = makeElement('div', '', 'book-card');
     const title = makeElement('h2', `${book.title}`);
     const author = makeElement('p', `Author: ${book.author}`);
     const pages = makeElement('p', `Pages: ${book.pages}`);
     const yearPublished = makeElement('p', `Year: ${book.yearPublished}`);
-    const read = makeElement('input');
+    const read = makeElement('input', '', 'read-checkbox');
     read.setAttribute('type', 'checkbox');
-    read.setAttribute('id', 'read');
-    const readLabel = makeElement('label', 'Read?: ');
-    readLabel.setAttribute('for', 'read');
+    const readLabel = makeElement('label', 'Read? ', 'read-label');
+    readLabel.appendChild(read);
     if (book.read === true) {
         read.setAttribute('checked', '');
     }
@@ -79,7 +79,6 @@ function createElements(book) {
     bookCard.appendChild(pages);
     bookCard.appendChild(yearPublished);
     bookCard.appendChild(readLabel);
-    bookCard.appendChild(read);
     bookCard.appendChild(buttonBlock);
     libraryDisplay.appendChild(bookCard);
 
@@ -130,6 +129,7 @@ function displayBooks() {
     const plusCard = makeElement('div', '+', 'plus-card');
     plusCard.innerHTML = '<svg style="width:50px;height:50px" viewBox="0 0 24 24"><path fill="currentColor" d="M17,13H13V17H11V13H7V11H11V7H13V11H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z" /></svg>';
     plusCard.addEventListener('click', () => {
+        clearForm();
         form[5].textContent = 'Add'
         formTitle.textContent = 'Add a new book'
         formContainer.classList.remove('hidden');
@@ -142,7 +142,7 @@ displayBooks();
 
 
 formBtn.addEventListener('click', (e) => {
-    if (e.target.innerText === 'Add') {
+    if (e.target.innerText === 'Add' && form.checkValidity()) {
         addBookToLibrary(
             form[0].value,
             form[1].value,
@@ -150,9 +150,11 @@ formBtn.addEventListener('click', (e) => {
             form[3].value,
             form[4].checked,
         );
+        clearForm();
+        formContainer.classList.add('hidden');
         // re-build page
         displayBooks();
-    } else if (e.target.innerText === 'Save') {
+    } else if (e.target.innerText === 'Save' && form.checkValidity()) {
         // find index of the book currently being edited
         const index = myLibrary.indexOf(currentBook);
         myLibrary[index].title = form[0].value;
@@ -161,15 +163,17 @@ formBtn.addEventListener('click', (e) => {
         myLibrary[index].yearPublished = form[3].value;
         myLibrary[index].read = form[4].checked;
         // re-build page
+        clearForm();
+        formContainer.classList.add('hidden');
         displayBooks();
         
     }
-    clearForm();
-    formContainer.classList.add('hidden');
+
 });
 
 // show form container popup
 showForm.addEventListener('click', () => {
+    clearForm();
     form[5].textContent = 'Add'
     formTitle.textContent = 'Add a new book'
     formContainer.classList.remove('hidden');
