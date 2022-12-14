@@ -16,10 +16,12 @@ img, picture, svg, video {
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     /* padding */
     padding: 40px max(calc(50vw - 500px), 20px);
     background-color: #e5e6e6;
+    display: flex;
+    flex-direction: column;
 }
 
 :root {
@@ -204,4 +206,22 @@ justify-content: space-between;
 
 .form-close {
     cursor: pointer;
+}
+
+footer {
+    font-size: 0.8rem;
+    text-align: center;
+    min-height: fit-content;
+    color: #888;
+    margin-top: auto;
+}
+
+footer a {
+    color: #048b8b;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #006565;
+    text-decoration: underline;
 }
