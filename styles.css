@@ -57,6 +57,7 @@ button:hover {
 
 input {
     padding: 6px 8px;
+    font-size: 1rem;
 }
 
 input[type=checkbox]{
@@ -170,12 +171,13 @@ form button {
 }
 
 .form-container {
-    position: absolute;
+    position: fixed;
     top: 10%;
     height: fit-content;
     width: min(calc(100vw - 40px), 1000px);
     display: flex;
     justify-content: center;
+    /* border: 1px solid blue; */
 }
 
 .form-inner {
@@ -184,11 +186,12 @@ form button {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    min-width: clamp(200px, 50vw, 600px);
+    min-width: clamp(300px, 80vw, 600px);
     height: fit-content;
     /* border: 10px solid #054b4b; */
     box-shadow: 0 0 10px 5px #054b4b22;
     border-radius: 5px;
+    /* border: 1px solid red; */
 }
 
 .check-box {
